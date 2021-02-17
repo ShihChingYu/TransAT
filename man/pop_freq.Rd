@@ -4,12 +4,12 @@
 \alias{pop_freq}
 \title{search allel frequency among populations and gene annotation information}
 \usage{
-pop_freq(ori_data, pop = "db_gnomAD_exome_freq")
+pop_freq(dat_ori, pop = "db_gnomAD_exome_freq")
 }
 \arguments{
-\item{pop}{selection of table. Default is db_TWB_GWG_freq}
-
 \item{dat_ori}{a dataframe including chromosome, start and end postion, ref/alt nucleotide}
+
+\item{pop}{selection of table. Default is db_TWB_GWG_freq}
 }
 \value{
 a new dataset with converting information

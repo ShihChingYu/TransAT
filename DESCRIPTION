@@ -15,7 +15,8 @@ Imports:
     stringr (>= 1.4.0),
     utils,
     RSQLite,
-    dplyr
+    dplyr,
+    magrittr
 Suggests:
     EnsDb.Hsapiens.v75 (>= 2.99.0),
     ensembldb (>= 2.10.2),

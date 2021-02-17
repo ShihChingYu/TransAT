@@ -2,3 +2,4 @@
 
 export(convert_transcriptID)
 export(pop_freq)
+importFrom(magrittr,`%>%`)
