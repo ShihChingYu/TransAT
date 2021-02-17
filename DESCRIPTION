@@ -1,0 +1,24 @@
+Package: MRAT
+Type: Package
+Title: Messenger RNA annotation Tool (MRAT): an R package for transcript annotation
+Version: 0.1.0
+Date: 2021-02-17
+Author: Ching-Yu Shih
+Maintainer: Ching-Yu Shih <cyshih30@gmail.com>
+Description: MRAT is a package within the R programming language for converting RefSeq ID to
+  Ensembl transcripts and mapping the genomic position, followed by providing variant allele
+  frequencies and gene annotations.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports:
+    stringr (>= 1.4.0),
+    utils,
+    RSQLite,
+    dplyr
+Suggests:
+    EnsDb.Hsapiens.v75 (>= 2.99.0),
+    ensembldb (>= 2.10.2),
+    biomaRt (>= 2.45.8),
+    IRanges (>= 2.6.1)
+RoxygenNote: 7.1.1
