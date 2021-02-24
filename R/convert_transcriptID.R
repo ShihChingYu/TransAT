@@ -55,5 +55,6 @@ convert_transcriptID <- function(dat, db, biomart="ensembl",
   cds_tx_gn_df<-cds_tx_gn_df[order(cds_tx_gn_df$tx_id, cds_tx_gn_df$tx_start),]
   dat3<-dat3[order(dat3$ensembl_transcript_id, dat3$CDS_start_loc),]
   dat4<-cbind(dat3, cds_tx_gn_df)
-  dat4
+  dat5<-dat4[,c(1:5, 10, 6:7, 11:15, 17:19)]
+  return(dat5)
 }

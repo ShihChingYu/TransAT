@@ -17,8 +17,7 @@ Imports:
     dplyr,
     magrittr,
     DBI,
-    RMySQL
-Suggests:
+    RMySQL,
     EnsDb.Hsapiens.v75 (>= 2.99.0),
     ensembldb (>= 2.10.2),
     biomaRt (>= 2.45.8),
