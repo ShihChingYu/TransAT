@@ -2,17 +2,17 @@
 % Please edit documentation in R/pop_freq.R
 \name{pop_freq}
 \alias{pop_freq}
-\title{search allel frequency among populations and gene annotation information}
+\title{search allele frequency among populations and gene annotation information}
 \usage{
-pop_freq(dat_ori, pop = "db_gnomAD_exome_freq")
+pop_freq(dat_ori, pop = "db_TWB_NGS_freq")
 }
 \arguments{
 \item{dat_ori}{a dataframe including chromosome, start and end postion, ref/alt nucleotide}
 
-\item{pop}{selection of table. Default is db_TWB_GWG_freq}
+\item{pop}{selection of table. Default is db_TWB_NGS_freq}
 }
 \value{
-a new dataset with converting information
+a new dataset with allele frequency and annotation information
 }
 \description{
 using genomic postion and ref/alt information to query gene annotation and allele frequency
@@ -22,6 +22,6 @@ dat<-read.csv(system.file("extdata",
                           "anno_freq_data.csv",
                           package = "MRAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-pop_dat<-pop_freq(dat, pop)
+pop_dat<-pop_freq(dat, pop="db_TWB_NGS_freq")
 
 }
