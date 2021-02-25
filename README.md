@@ -8,10 +8,4 @@ devtools::install_github("ShihChingYu/MRAT")
 library(MRAT)
 ```
 
-### Flowchart
-
-```{r, workflow, echo=FALSE, out.width="50%", echo=FALSE}
-knitr::include_graphics("/work1782/cyshih/package/workflow.png")
-```
-
 The genomic positions are then used to retrieve population allele frequencies for further analysis. Two functions, “convert_transcriptID” and “pop_freq”, conduct all the steps, and output intermediate genomic information and final allelic annotation, respectively. It accesses allele frequencies for different global populations from the publicly available 1000 genomes, gnomAD and Taiwan Biobank databases. 
