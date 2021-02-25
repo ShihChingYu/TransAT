@@ -7,10 +7,14 @@
 convert_transcriptID(
   dat,
   db,
-  biomart = "ensembl",
-  dataset = "hsapiens_gene_ensembl",
-  getBM_attributes = c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol"),
-  filters = "refseq_mrna"
+  biomart_ens = "ensembl",
+  biomart_snp = "snps",
+  dataset_ens = "hsapiens_gene_ensembl",
+  dataset_snp = "hsapiens_snp",
+  getBM_attributes_ens = c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol"),
+  getBM_attributes_ngs = c("refsnp_id", "chr_name", "chrom_start", "chrom_end"),
+  filters_ens = "refseq_mrna",
+  filters_ngs = "chromosomal_region"
 )
 }
 \arguments{
@@ -19,16 +23,27 @@ refers to ref/CDS position/alt.}
 
 \item{db}{`EnsDb` object. Default is EnsDb.Hsapiens.v75.}
 
-\item{biomart}{selection of BioMart database. Default is "ensembl".}
+\item{biomart_ens}{selection of BioMart database. Default is "ensembl".}
 
-\item{dataset}{BioMart databases includes many datasets. Choose dataset in the database.
+\item{biomart_snp}{selection of BioMart database. Default is "snps".}
+
+\item{dataset_ens}{BioMart databases includes many datasets. Choose dataset in the database.
 Default is "hsapiens_gene_ensembl".}
 
-\item{getBM_attributes}{defines the values of interests.
+\item{dataset_snp}{BioMart databases includes many datasets. Choose dataset in the database.
+Default is "hsapiens_snp".}
+
+\item{getBM_attributes_ens}{defines the values of interests.
 Default shows "refseq_mrna", "ensembl_transcript_id", "hgnc_symbol".
 The listAttributes function displays all available attributes in the selected dataset.}
 
-\item{filters}{a vector of filters to query. Default shows "refseq_mrna".}
+\item{getBM_attributes_ngs}{defines the values of interests.
+Default shows "refsnp_id", "chr_name", "chrom_start", "chrom_end".
+The listAttributes function displays all available attributes in the selected dataset.}
+
+\item{filters_ens}{a vector of filters to query. Default shows "refseq_mrna".}
+
+\item{filters_ngs}{a vector of filters to query. Default shows "chromosomal_region".}
 }
 \value{
 a new dataset with converting information
@@ -43,6 +58,10 @@ dat<-read.csv(system.file("extdata",
                           "convertID_data.csv",
                           package = "MRAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-new_dat<-convert_transcriptID(dat, db, biomart, dataset, getBM_attributes, filters)
+new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl", biomart_snp="snps",
+dataset_ens="hsapiens_gene_ensembl", dataset_snp="hsapiens_snp",
+getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol"),
+getBM_attributes_ngs=c('refsnp_id', 'chr_name', 'chrom_start', 'chrom_end'),
+filters_ens="refseq_mrna", filters_ngs="chromosomal_region")
 
 }
