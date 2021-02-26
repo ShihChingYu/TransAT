@@ -2,4 +2,8 @@
 
 export(convert_transcriptID)
 export(pop_freq)
+import(EnsDb.Hsapiens.v75)
+import(IRanges)
+import(biomaRt)
+import(ensembldb)
 importFrom(magrittr,`%>%`)
