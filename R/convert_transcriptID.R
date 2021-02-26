@@ -80,6 +80,6 @@ convert_transcriptID <- function(dat, db, biomart_ens="ensembl", biomart_snp="sn
   colnames(dat4_rsid)[1]<-"chr"
   final<-dat4_rsid[,c( "Transcript_version", "Nucleotide_changes", "CDS_start_loc","ref","alt","chr",
                        "ensembl_transcript_id", "hgnc_symbol", "start", "end", "width", "strand", "exon_id",
-                       "exon_rank", "tx_start", "tx_end")]
+                       "exon_rank", "tx_start", "tx_end", "refsnp_id")]
   return(final)
 }
