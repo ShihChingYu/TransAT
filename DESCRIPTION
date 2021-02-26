@@ -17,11 +17,10 @@ Imports:
     dplyr,
     magrittr,
     DBI,
-    RMySQL
-Depends:
+    RMySQL,
     EnsDb.Hsapiens.v75 (>= 2.99.0),
     ensembldb (>= 2.10.2),
     biomaRt (>= 2.44.4),
     IRanges (>= 2.6.1), 
-    R (>= 3.6)
+Depends: R (>= 3.6)
 RoxygenNote: 7.1.1

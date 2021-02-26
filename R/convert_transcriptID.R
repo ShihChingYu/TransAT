@@ -19,7 +19,10 @@
 #' Default shows "refsnp_id", "chr_name", "chrom_start", "chrom_end".
 #' The listAttributes function displays all available attributes in the selected dataset.
 #' @param filters_ngs a vector of filters to query. Default shows "chromosomal_region".
-#' @import EnsDb.Hsapiens.v75 ensembldb biomaRt IRanges
+#' @import EnsDb.Hsapiens.v75
+#' @import ensembldb
+#' @import biomaRt
+#' @import IRanges
 #' @return a new dataset with converting information
 #' @export
 #' @examples
