@@ -22,7 +22,7 @@ Imports:
     EnsDb.Hsapiens.v75,
     ensembldb,
     biomaRt,
-    IRange
+    IRanges
 Depends:
-    R (>= 4.0.2)
+    R (>= 3.6)
 RoxygenNote: 7.1.1
