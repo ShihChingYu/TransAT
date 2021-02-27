@@ -1,7 +1,7 @@
 Package: MRAT
 Type: Package
 Title: Messenger RNA annotation Tool (MRAT): an R package for transcript annotation
-Version: 0.1.0
+Version: 0.1.1
 Date: 2021-02-17
 Author: Ching-Yu Shih
 Maintainer: Ching-Yu Shih <cyshih30@gmail.com>
@@ -17,10 +17,10 @@ Imports:
     dplyr,
     magrittr,
     DBI,
-    RMySQL,
-    EnsDb.Hsapiens.v75 (>= 2.99.0),
-    ensembldb (>= 2.10.2),
-    biomaRt (>= 2.44.4),
-    IRanges (>= 2.6.1)
-Depends: R (>= 3.6)
+    RMySQL
+Depends:
+    EnsDb.Hsapiens.v75,
+    ensembldb,
+    biomaRt,
+    IRanges
 RoxygenNote: 7.1.1
