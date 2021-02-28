@@ -8,7 +8,7 @@ Maintainer: Ching-Yu Shih <cyshih30@gmail.com>
 Description: MRAT is a package within the R programming language for converting RefSeq ID to
   Ensembl transcripts and mapping the genomic position, followed by providing variant allele
   frequencies and gene annotations.
-biocViews: Software, Infrastructure, DataRepresentation, AnnotationData, Coverage, Genetics, Sequencing 
+biocViews: Software, Infrastructure, DataRepresentation, Coverage, Genetics, Sequencing 
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -18,11 +18,11 @@ Imports:
     dplyr,
     magrittr,
     DBI,
-    RMySQL,
-    EnsDb.Hsapiens.v75,
-    ensembldb,
-    biomaRt,
-    IRanges
+    RMySQL
 Depends:
+    EnsDb.Hsapiens.v75 (>= 2.99.0),
+    ensembldb,
+    biomaRt (>= 2.45.9),
+    IRanges (>= 2.20.2),
     R (>= 3.6)
 RoxygenNote: 7.1.1
