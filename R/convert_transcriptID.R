@@ -11,14 +11,6 @@
 #' @param getBM_attributes_ens defines the values of interests.
 #' Default shows "refseq_mrna", "ensembl_transcript_id", "hgnc_symbol".
 #' The listAttributes function displays all available attributes in the selected dataset.
-#' @param filters_ens a vector of filters to query. Default shows "refseq_mrna".
-#' @param biomart_snp selection of BioMart database. Default is "snps".
-#' @param dataset_snp BioMart databases includes many datasets. Choose dataset in the database.
-#' Default is "hsapiens_snp".
-#' @param getBM_attributes_ngs defines the values of interests.
-#' Default shows "refsnp_id", "chr_name", "chrom_start", "chrom_end".
-#' The listAttributes function displays all available attributes in the selected dataset.
-#' @param filters_ngs a vector of filters to query. Default shows "chromosomal_region".
 #' @import EnsDb.Hsapiens.v75
 #' @import ensembldb
 #' @import biomaRt
@@ -32,17 +24,11 @@
 #'                           "convertID_data.csv",
 #'                           package = "MRAT"),
 #'               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-#' new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl", biomart_snp="snps",
-#' dataset_ens="hsapiens_gene_ensembl", dataset_snp="hsapiens_snp",
-#' getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol"),
-#' getBM_attributes_ngs=c('refsnp_id', 'chr_name', 'chrom_start', 'chrom_end'),
-#' filters_ens="refseq_mrna", filters_ngs="chromosomal_region")
+#' new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl",dataset_ens="hsapiens_gene_ensembl",
+#' getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol"))
 #'
-convert_transcriptID <- function(dat, db, biomart_ens="ensembl", biomart_snp="snps",
-                                 dataset_ens="hsapiens_gene_ensembl", dataset_snp="hsapiens_snp",
-                                 getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol"),
-                                 getBM_attributes_ngs=c('refsnp_id', 'chr_name', 'chrom_start', 'chrom_end'),
-                                 filters_ens="refseq_mrna", filters_ngs="chromosomal_region"){
+convert_transcriptID <- function(dat, db, biomart_ens="ensembl", dataset_ens="hsapiens_gene_ensembl",
+                                 getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol")){
 
   #preprocess data
   str<-as.array(dat$Nucleotide_changes)
@@ -53,7 +39,7 @@ convert_transcriptID <- function(dat, db, biomart_ens="ensembl", biomart_snp="sn
 
   #converting NCBI RefSeq transcript ID to Ensembl transcript ID
   ensembl <- biomaRt::useEnsembl(biomart = biomart_ens, dataset = dataset_ens, GRCh=37)
-  dat_ensmbl_id<-biomaRt::getBM(attributes=getBM_attributes_ens, filters = filters_ens,
+  dat_ensmbl_id<-biomaRt::getBM(attributes=getBM_attributes_ens, filters = "refseq_mrna",
                                 values = dat$Transcript_version, mart= ensembl, uniqueRows = TRUE, useCache = FALSE)
   dat_ensmbl_id<-dat_ensmbl_id[order(dat_ensmbl_id$refseq_mrna),]
   dat2<-merge(dat, dat_ensmbl_id, by.x = "Transcript_version", by.y = "refseq_mrna", all=T)
@@ -72,10 +58,11 @@ convert_transcriptID <- function(dat, db, biomart_ens="ensembl", biomart_snp="sn
   dat3<-dat3[order(dat3$ensembl_transcript_id, dat3$CDS_start_loc),]
   dat4<-cbind(dat3, cds_tx_gn_df)
 
+  #retrieve reID from biomart = "snps" and dataset = "hsapiens_snp" based on genomic positions in previous step
   SNP_M <- data.frame(CHR = dat4$seqnames, START = dat4$start, END = dat4$end)
   coords <- apply(SNP_M, 1, paste, collapse = ":")
-  snp = biomaRt::useEnsembl(biomart = biomart_snp, dataset = dataset_snp, GRCh=37)
-  rsid<-biomaRt::getBM(attributes = getBM_attributes_ngs, filters = filters_ngs,
+  snp = biomaRt::useEnsembl(biomart = "snps", dataset = "hsapiens_snp", GRCh=37)
+  rsid<-biomaRt::getBM(attributes = c('refsnp_id', 'chr_name', 'chrom_start', 'chrom_end'), filters = "chromosomal_region",
                 values = coords, mart = snp, useCache = FALSE, uniqueRows = TRUE)
   matches <- grep("^rs", rsid$refsnp_id, ignore.case = T)
   rsid_onlyrs<-rsid[matches,]
