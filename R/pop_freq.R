@@ -3,7 +3,7 @@
 #' @name pop_freq
 #'
 #' @param dat_ori a dataframe including chromosome, start and end postion, ref/alt nucleotide
-#' @param pop selection of table. Default is db_TWB_NGS_freq
+#' @param pop selection of table. Default is db_gnomAD_exome_freq
 #' @importFrom magrittr `%>%`
 #' @return a new dataset with allele frequency and annotation information
 #' @export
@@ -12,22 +12,31 @@
 #'                           "anno_freq_data.csv",
 #'                           package = "MRAT"),
 #'               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-#' pop_dat<-pop_freq(dat, pop="db_TWB_NGS_freq")
+#' pop_dat<-pop_freq(dat, pop="db_gnomAD_exome_freq")
 #'
 
-pop_freq<-function(dat_ori, pop="db_TWB_NGS_freq"){
+pop_freq<-function(dat_ori, pop="db_gnomAD_exome_freq"){
   colnames(dat_ori)<-c("Chr", "Start", "End", "Ref", "Alt")
-  con = DBI::dbConnect(RMySQL::MySQL(), user='cyshih30', password='bioinfo13579', host = "localhost", dbname="allele_freq_db")
+  con = DBI::dbConnect(RMySQL::MySQL(), user='vistor', password='vistor', host = "mrat.cgm.ntu.edu.tw", dbname="allele_freq_db")
 
-  res <- DBI::dbSendQuery(con, statement=paste("SELECT * FROM", pop))
-  data<-DBI::dbFetch(res, n = -1)
+  gene_list<-c()
+  for (j in 1:nrow(dat_ori)) {
+    chr <- dat_ori[j, 1]
+    start<- dat_ori[j, 2]
+    end<- dat_ori[j, 3]
+    ref<-  dat_ori[j, 4]
+    alt<-  dat_ori[j, 5]
+    query <- paste0("SELECT * FROM `", pop, "` where Chr= '", chr, "' AND
+                  Start= '", start, "' AND End= '", end, "' AND Ref= '", ref, "' AND Alt= '", alt, "' ;")
+    tmp <- DBI::dbGetQuery(con, query)
+    gene_list[[j]]<-tmp
+  }
+  gene_table<-do.call("rbind", gene_list)
 
   pop_result <- dat_ori %>%
-    dplyr::left_join(data , by=c("Chr", "Start", "End", "Ref", "Alt"))
+    dplyr::left_join(gene_table , by=c("Chr", "Start", "End", "Ref", "Alt"))
 
   return(pop_result)
   DBI::dbDisconnect(con)
 }
-
-
 

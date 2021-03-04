@@ -4,12 +4,12 @@
 \alias{pop_freq}
 \title{search allele frequency among populations and gene annotation information}
 \usage{
-pop_freq(dat_ori, pop = "db_TWB_NGS_freq")
+pop_freq(dat_ori, pop = "db_gnomAD_exome_freq")
 }
 \arguments{
 \item{dat_ori}{a dataframe including chromosome, start and end postion, ref/alt nucleotide}
 
-\item{pop}{selection of table. Default is db_TWB_NGS_freq}
+\item{pop}{selection of table. Default is db_gnomAD_exome_freq}
 }
 \value{
 a new dataset with allele frequency and annotation information
@@ -22,6 +22,6 @@ dat<-read.csv(system.file("extdata",
                           "anno_freq_data.csv",
                           package = "MRAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-pop_dat<-pop_freq(dat, pop="db_TWB_NGS_freq")
+pop_dat<-pop_freq(dat, pop="db_gnomAD_exome_freq")
 
 }
