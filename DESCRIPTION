@@ -1,7 +1,7 @@
 Package: MRAT
 Type: Package
 Title: Messenger RNA annotation Tool (MRAT): an R package for transcript annotation
-Version: 0.1.5
+Version: 0.1.6
 Date: 2021-02-17
 Author: Ching-Yu Shih [aut, cre], Amrita Chattopadhyay [aut], Chien-Hui Wu [ctb,], Yu-Wen Tien [ctb,], Tzu-Pin Lu [aut]
 Maintainer: Ching-Yu Shih <cyshih30@gmail.com>
