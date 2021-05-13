@@ -37,6 +37,21 @@ pop_freq<-function(dat_ori, pop="db_gnomAD_exome_freq"){
     dplyr::left_join(gene_table , by=c("Chr", "Start", "End", "Ref", "Alt"))
 
   return(pop_result)
+
+  #make barplot for each sub-population in the dable
+  match_col<-grep("freq$", colnames(pop_result), ignore.case = T)
+  pop_dat_forplot<-pop_result[,match_col]
+
+  pdf("allplots.pdf",onefile = TRUE)
+  for(i in 1:nrow(pop_dat_forplot)){
+    dat<-pop_dat_forplot[i, ]
+    dat2<-dat %>% gather(population, frequency, 1:ncol(pop_dat_forplot))
+    ggpl<-ggplot2::ggplot(dat2, aes(x=population, y=frequency, color=population)) +
+      geom_bar(stat = "identity", fill="white") +
+      theme(axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank())
+    print(ggpl)}
+  dev.off()
+
   DBI::dbDisconnect(con)
 }
 
