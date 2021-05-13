@@ -9,7 +9,9 @@ convert_transcriptID(
   db,
   biomart_ens = "ensembl",
   dataset_ens = "hsapiens_gene_ensembl",
-  getBM_attributes_ens = c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol")
+  dat_filters = "refseq_mrna",
+  getBM_attributes_ens = c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol",
+    "ucsc")
 )
 }
 \arguments{
@@ -23,8 +25,10 @@ refers to ref/CDS position/alt.}
 \item{dataset_ens}{BioMart databases includes many datasets. Choose dataset in the database.
 Default is "hsapiens_gene_ensembl".}
 
+\item{dat_filters}{refers to the types of transcripts. Default is "refseq_mrna". The user can also specify "ucsc" as transcript ID.}
+
 \item{getBM_attributes_ens}{defines the values of interests.
-Default shows "refseq_mrna", "ensembl_transcript_id", "hgnc_symbol".
+Default shows "refseq_mrna", "ensembl_transcript_id", "hgnc_symbol", "ucsc".
 The listAttributes function displays all available attributes in the selected dataset.}
 }
 \value{
@@ -37,10 +41,10 @@ Preprocessing, converting and mapping
 library(EnsDb.Hsapiens.v75)
 db=EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75
 dat<-read.csv(system.file("extdata",
-                          "convertID_data.csv",
+                          "convertID_refseq_data.csv",
                           package = "MRAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl",dataset_ens="hsapiens_gene_ensembl",
-getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol"))
+new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl",dataset_ens="hsapiens_gene_ensembl", dat_filters = "refseq_mrna",
+getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol", "ucsc"))
 
 }
