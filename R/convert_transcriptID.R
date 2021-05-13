@@ -25,8 +25,8 @@
 #'                           "convertID_refseq_data.csv",
 #'                           package = "MRAT"),
 #'               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-#' new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl",dataset_ens="hsapiens_gene_ensembl", dat_filters = "refseq_mrna",
-#' getBM_attributes_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol", "ucsc"))
+#' new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl",dat_ens="hsapiens_gene_ensembl", dat_filter = "refseq_mrna",
+#' BM_att_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol", "ucsc"))
 #'
 convert_transcriptID <- function(dat, db, biomart_ens="ensembl", dat_ens="hsapiens_gene_ensembl", dat_filter = "refseq_mrna",
                                  BM_att_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol", "ucsc")){
@@ -46,7 +46,7 @@ convert_transcriptID <- function(dat, db, biomart_ens="ensembl", dat_ens="hsapie
                                 values = dat[1], mart= ensembl, uniqueRows = TRUE, useCache = FALSE)
   matches <- grep("^NM", dat_ensmbl_id$refseq_mrna, ignore.case = T)
   dat_ensmbl_id2<-dat_ensmbl_id[matches,]
-  dat2<-merge(dat, dat_ensmbl_id2, by.x = colnames(dat[1]), by.y = dat_filters, all.y=T)
+  dat2<-merge(dat, dat_ensmbl_id2, by.x = colnames(dat[1]), by.y = dat_filter, all.y=T)
 
 
   #loading the db
