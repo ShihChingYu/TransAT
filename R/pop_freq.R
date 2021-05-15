@@ -59,7 +59,7 @@ pop_freq<-function(dat_ori, pop="db_gnomAD_exome_freq"){
   var_maf_table<-do.call("rbind", variants_maf)
   colnames(var_maf_table)<-unlist(unique(strsplit(colnames(pop_dat_forplot), "_([^_]*_[^_]*)$")))
 
-  pdf("./barplots.pdf",onefile = TRUE)
+  pdf("barplots.pdf",onefile = TRUE)
   for(i in 1:nrow(var_maf_table)){
     dat<-var_maf_table[i, ]
     dat2<-data.frame(dat)
