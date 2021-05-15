@@ -43,7 +43,6 @@ dat<-read.csv(system.file("extdata",
                           "convertID_refseq_data.csv",
                           package = "MRAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-new_dat<-convert_transcriptID(dat, db, biomart_ens="ensembl",dat_ens="hsapiens_gene_ensembl", dat_filter = "refseq_mrna",
-BM_att_ens=c("refseq_mrna", "ensembl_transcript_id", "hgnc_symbol", "ucsc"))
+new_dat<-convert_transcriptID(dat, db, dat_filter = "refseq_mrna")
 
 }

@@ -4,7 +4,9 @@
 #'
 #' @param dat_ori a dataframe including chromosome, start and end postion, ref/alt nucleotide
 #' @param pop selection of table. Default is db_gnomAD_exome_freq
+#' @import ggplot2
 #' @importFrom magrittr `%>%`
+#' @importFrom grDevices pdf dev.off
 #' @return a new dataset with allele frequency and annotation information
 #' @export
 #' @examples
@@ -42,13 +44,28 @@ pop_freq<-function(dat_ori, pop="db_gnomAD_exome_freq"){
   match_col<-grep("freq$", colnames(pop_result), ignore.case = T)
   pop_dat_forplot<-pop_result[,match_col]
 
-  pdf("allplots.pdf",onefile = TRUE)
-  for(i in 1:nrow(pop_dat_forplot)){
-    dat<-pop_dat_forplot[i, ]
-    dat2<-dat %>% gather(population, frequency, 1:ncol(pop_dat_forplot))
-    ggpl<-ggplot2::ggplot(dat2, aes(x=population, y=frequency, color=population)) +
-      geom_bar(stat = "identity", fill="white") +
-      theme(axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank())
+  variants_maf<-list()
+  maf<-list()
+  for (i in 1:nrow(pop_dat_forplot)){
+    variants<-pop_dat_forplot[i, ]
+    for (j in 1:ncol(pop_dat_forplot)){
+      if(j %% 2 == 1){
+        maf[j]<-min(variants[,j], variants[,j+1])
+      }
+      maf_table<-do.call("cbind", maf)
+    }
+    variants_maf[[i]]<-maf_table
+  }
+  var_maf_table<-do.call("rbind", variants_maf)
+  colnames(var_maf_table)<-unlist(unique(strsplit(colnames(pop_dat_forplot), "_([^_]*_[^_]*)$")))
+
+  pdf("./barplots.pdf",onefile = TRUE)
+  for(i in 1:nrow(var_maf_table)){
+    dat<-var_maf_table[i, ]
+    dat2<-data.frame(dat)
+    ggpl<-ggplot2::ggplot(dat2, aes(x=rownames(dat2), y=dat, color=rownames(dat2))) +
+      ggplot2::geom_bar(stat = "identity", fill="white") +xlab('Population') +
+      ylab('Frequency') + coord_flip() + theme(legend.position = "none")
     print(ggpl)}
   dev.off()
 
