@@ -28,3 +28,7 @@ Depends:
     IRanges (>= 2.20.2),
     R (>= 4.0.0)
 RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

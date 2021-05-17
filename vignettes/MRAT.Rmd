@@ -1,0 +1,19 @@
+---
+title: "MRAT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MRAT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MRAT)
+```

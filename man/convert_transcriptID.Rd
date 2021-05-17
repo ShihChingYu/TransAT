@@ -22,7 +22,7 @@ refers to ref/CDS position/alt.}
 \item{biomart_ens}{selection of BioMart database. Default is "ensembl".}
 
 \item{dat_ens}{BioMart databases includes many datasets. Choose dataset in the database.
-Default is "hsapiens_gene_ensembl".}
+Default is "hsapiens_gene_ensembl". Alternatives include "drerio_gene_ensembl" and "mmusculus_gene_ensembl".}
 
 \item{dat_filter}{refers to the types of transcripts. Default is "refseq_mrna". The user can also specify "ucsc" as transcript ID.}
 

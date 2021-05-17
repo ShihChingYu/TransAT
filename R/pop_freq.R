@@ -18,6 +18,7 @@
 #'
 
 pop_freq<-function(dat_ori, pop="db_gnomAD_exome_freq"){
+  dat_ori<-data.frame(dat_ori)
   colnames(dat_ori)<-c("Chr", "Start", "End", "Ref", "Alt")
   con = DBI::dbConnect(RMySQL::MySQL(), user='vistor', password='vistor', host = "mrat.cgm.ntu.edu.tw", dbname="allele_freq_db")
 
@@ -59,7 +60,7 @@ pop_freq<-function(dat_ori, pop="db_gnomAD_exome_freq"){
   var_maf_table<-do.call("rbind", variants_maf)
   colnames(var_maf_table)<-unlist(unique(strsplit(colnames(pop_dat_forplot), "_([^_]*_[^_]*)$")))
 
-  pdf("allplots.pdf",onefile = TRUE)
+  pdf(file = paste(getwd(), "plots.pdf", sep="/"), onefile = TRUE)
   for(i in 1:nrow(var_maf_table)){
     dat<-var_maf_table[i, ]
     dat2<-data.frame(dat)

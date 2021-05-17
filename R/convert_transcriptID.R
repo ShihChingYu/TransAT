@@ -7,7 +7,7 @@
 #' @param db `EnsDb` object. Default is EnsDb.Hsapiens.v75.
 #' @param biomart_ens selection of BioMart database. Default is "ensembl".
 #' @param dat_ens BioMart databases includes many datasets. Choose dataset in the database.
-#' Default is "hsapiens_gene_ensembl".
+#' Default is "hsapiens_gene_ensembl". Alternatives include "drerio_gene_ensembl" and "mmusculus_gene_ensembl".
 #' @param dat_filter refers to the types of transcripts. Default is "refseq_mrna". The user can also specify "ucsc" as transcript ID.
 #' @param BM_att_ens defines the values of interests.
 #' Default shows "refseq_mrna", "ensembl_transcript_id", "hgnc_symbol", "ucsc".
