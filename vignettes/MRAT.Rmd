@@ -7,13 +7,24 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+### Installation
 
 ```{r setup}
+devtools::install_github("ShihChingYu/MRAT")
 library(MRAT)
+```
+
+### Convert transcript ID and map genomic position
+This step will use example data to convert RefSeq transcript ID into ensamble transcript ID, as well as retrieve genomic position. 
+
+```{r convert}
+data(convertID_refseq_data)
+
+```
+
+
+### The result table from the convert_transcriptID()
+
+```{r result of convert}
+data(convertID_result)
 ```
