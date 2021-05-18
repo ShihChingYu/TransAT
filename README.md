@@ -13,23 +13,5 @@ devtools::install_github("ShihChingYu/MRAT")
 library(MRAT)
 ```
 
-### Convert transcript ID and map genomic position
-This step will use example data to convert RefSeq transcript ID into ensamble transcript ID, as well as retrieve genomic position. 
-
-```{r convert}
-library(EnsDb.Hsapiens.v75)
-db=EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75
-dat<-read.csv(system.file("extdata", "convertID_refseq_data.csv", package = "MRAT"), 
-              stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
-new_dat<-convert_transcriptID(dat, db, dat_filter = "refseq_mrna")
-```
-
-###The result table from the convert_transcriptID()
-
-```{r result of convert}
-use_data(data-raw/convertID_result.csv)
-```
-
-
 ### Note
 Please install the package on the Mac or remove the old version of R if you are unable to install it. 
