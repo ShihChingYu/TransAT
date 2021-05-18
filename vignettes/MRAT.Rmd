@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 ```
 Install the package
 ```{r setup}
+##devtools::install_github("ShihChingYu/MRAT")
 library(MRAT)
 ```
 
