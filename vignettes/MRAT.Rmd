@@ -1,6 +1,6 @@
 ---
 title: "MRAT"
-output: rmarkdown::html_vignette
+output: html_document
 vignette: >
   %\VignetteIndexEntry{MRAT}
   %\VignetteEngine{knitr::rmarkdown}
