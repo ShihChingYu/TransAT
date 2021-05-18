@@ -20,7 +20,8 @@ Imports:
     DBI,
     RMySQL,
     ggplot2,
-    tidyr
+    tidyr,
+    rlang
 Depends:
     EnsDb.Hsapiens.v75 (>= 2.99.0),
     ensembldb,
