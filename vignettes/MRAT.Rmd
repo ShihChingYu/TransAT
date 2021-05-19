@@ -1,17 +1,11 @@
 ---
 title: "MRAT"
-output: html_document
-vignette: |
-  %\VignetteIndexEntry{MRAT} %\VignetteEngine{knitr::knitr} %\VignetteEncoding{UTF-8}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MRAT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
 
 Install the package
 ```{r setup}
@@ -55,10 +49,4 @@ Result from the pop_freq()
 ```{r}
 data(pop_result, package = "MRAT")
 pop_result
-```
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  file.rename(from = "vignettes/")
-)
 ```

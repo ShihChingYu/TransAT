@@ -3,7 +3,7 @@ MRAT is a package within the R programming language for converting RefSeq ID to 
 
 #Install the package
 ```{r setup}
-##devtools::install_github("ShihChingYu/MRAT")
+devtools::install_github("ShihChingYu/MRAT")
 library(MRAT)
 ```
 
