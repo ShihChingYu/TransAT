@@ -1,10 +1,8 @@
 ---
 title: "MRAT"
 output: html_document
-vignette: >
-  %\VignetteIndexEntry{MRAT}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+vignette: |
+  %\VignetteIndexEntry{MRAT} %\VignetteEngine{knitr::knitr} %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -14,6 +12,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
+
 Install the package
 ```{r setup}
 ##devtools::install_github("ShihChingYu/MRAT")
@@ -58,3 +57,8 @@ data(pop_result, package = "MRAT")
 pop_result
 ```
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  file.rename(from = "vignettes/")
+)
+```
