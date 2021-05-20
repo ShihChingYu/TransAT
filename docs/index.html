@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">MRAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -44,6 +44,9 @@
     <span class="fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="articles/MRAT.html">Get started</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -61,20 +64,32 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-<hr>
-<p>output: pdf_document: default html_document: default — messenger RNA annotation tool (MRAT), that provides (i) SNP ID and genomic position for a user-provided transcript ID from patients, and (ii) allele frequencies for the SNPs from publicly available global populations, through two simple command lines. Two functions, “convert_transcriptID” and “pop_freq”, conduct all the steps, and output intermediate genomic information and final allelic annotation, respectively. It accesses allele frequencies for different global populations from the publicly available 1000 genomes, gnomAD and Taiwan Biobank databases.</p>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
-<p><code>{r package} devtools::install_github("ShihChingYu/MRAT") library(MRAT)</code></p>
+<div id="mrat" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#mrat" class="anchor"></a>MRAT</h1></div>
+<p>MRAT is a package within the R programming language for converting RefSeq ID to Ensembl transcripts and mapping the genomic position, followed by providing variant allele frequencies and gene annotations.</p>
+<p>#Install the package <code>{r setup} devtools::install_github("ShihChingYu/MRAT") library(MRAT)</code></p>
+<p>#Load the data for convet tanscript ID</p>
+<pre class="{r}"><code>dat&lt;-read.csv(system.file("extdata", "convertID_refseq_data.csv", package = "MRAT"),
+              stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
+dat</code></pre>
+<p>#Excute in convert_transcriptID()</p>
+<pre class="{r}"><code>new_dat&lt;-convert_transcriptID(dat, db, dat_filter = "refseq_mrna")</code></pre>
+<p>#Result from the convert_transcriptID()</p>
+<pre class="{r}"><code><a href="https://rdrr.io/r/utils/data.html">data(convertID_result, package = "MRAT")
+convertID_result</a></code></pre>
+<p>#Load the data for getting population allele frequency</p>
+<pre class="{r}"><code>anno_freq_data&lt;-read.csv(system.file("extdata",
+                          "anno_freq_data.csv",
+                          package = "MRAT"),
+              stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
+anno_freq_data</code></pre>
+<p>#Excute in pop_freq()</p>
+<pre class="{r}"><code>pop_dat&lt;-pop_freq(anno_freq_data, pop="db_gnomAD_exome_freq")</code></pre>
+<p>#Result from the pop_freq()</p>
+<pre class="{r}"><code><a href="https://rdrr.io/r/utils/data.html">data(pop_result, package = "MRAT")
+pop_result</a></code></pre>
 </div>
-<div id="note" class="section level3">
-<h3 class="hasAnchor">
-<a href="#note" class="anchor"></a>Note</h3>
-<p>Please install the package on the Mac or remove the old version of R if you are unable to install it.</p>
-</div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
