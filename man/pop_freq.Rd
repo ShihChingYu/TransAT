@@ -20,7 +20,7 @@ using genomic postion and ref/alt information to query gene annotation and allel
 \examples{
 dat<-read.csv(system.file("extdata",
                           "anno_freq_data.csv",
-                          package = "MRAT"),
+                          package = "TransAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
 pop_dat<-pop_freq(dat, pop="db_gnomAD_exome_freq")
 

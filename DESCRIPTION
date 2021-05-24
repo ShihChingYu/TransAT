@@ -1,12 +1,12 @@
-Package: MRAT
+Package: TransAT
 Type: Package
-Title: Messenger RNA annotation Tool (MRAT): an R package for transcript annotation
+Title: Transcript Annotation Tool (TransAT): an R package for retrieving annotations for transcript specific genetic variants
 Version: 0.1.7
 Date: 2021-02-17
 Author: Ching-Yu Shih [aut, cre], Amrita Chattopadhyay [aut], Chien-Hui Wu [ctb,], Yu-Wen Tien [ctb,], Tzu-Pin Lu [aut]
 Maintainer: Ching-Yu Shih <cyshih30@gmail.com>
-Description: MRAT is a package within the R programming language for converting RefSeq ID to
-  Ensembl transcripts and mapping the genomic position, followed by providing variant allele
+Description: TransAT is a package within the R programming language for converting RefSeq ID to
+  Ensembl ID and mapping the genomic position, followed by providing variant allele
   frequencies and gene annotations.
 biocViews: Software, Infrastructure, DataRepresentation, Coverage, Genetics, Sequencing 
 License: GPL-2

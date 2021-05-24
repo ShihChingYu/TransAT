@@ -41,7 +41,7 @@ library(EnsDb.Hsapiens.v75)
 db=EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75
 dat<-read.csv(system.file("extdata",
                           "convertID_refseq_data.csv",
-                          package = "MRAT"),
+                          package = "TransAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
 new_dat<-convert_transcriptID(dat, db, dat_filter = "refseq_mrna")
 
