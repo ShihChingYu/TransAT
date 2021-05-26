@@ -8,15 +8,36 @@ library(TransAT)
 ```
 
 #Load the data for convet tanscript ID
+##load .csv of refseq ID
 ```{r}
 dat<-read.csv(system.file("extdata", "convertID_refseq_data.csv", package = "TransAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
 dat
 ```
 
+##load .bed of refseq ID
+```{r}
+dat_b<-read.table(system.file("extdata", "convertID_refseq_data2.bed", package = "TransAT"),
+              stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = "\t", header=T)
+dat_b
+```
+
+##load .csv of UCSC ID
+```{r}
+dat_ucsc<-read.csv(system.file("extdata", "convertID_ucsc_data.csv", package = "TransAT"),
+              stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
+dat_ucsc
+```
+
 #Excute in convert_transcriptID()
+##convert transcript refseq ID
 ```{r}
 new_dat<-convert_transcriptID(dat, db, dat_filter = "refseq_mrna")
+```
+
+##convert transcript ucsc ID
+```{r}
+new_dat<-convert_transcriptID(dat, db, dat_filter = "ucsc")
 ```
 
 #Result from the convert_transcriptID()
