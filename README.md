@@ -1,3 +1,4 @@
+# TransAT
 TransAT is a package within the R programming language for converting RefSeq ID to Ensembl ID and mapping the genomic position, followed by providing variant allele frequencies and gene annotations.
 
 **Install the package**
@@ -6,23 +7,25 @@ devtools::install_github("ShihChingYu/TransAT", force=T)
 library(TransAT)
 ```
 
-**Load the data for convet tanscript ID**
+## Usage of convet_tanscriptID()
 
-(1) load .csv of refseq ID
+**Load the data for convet_tanscriptID()**
+
+- load .csv of refseq ID
 ```{r}
 dat<-read.csv(system.file("extdata", "convertID_refseq_data.csv", package = "TransAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
 dat
 ```
 
-(2) load .csv of UCSC ID
+- load .csv of UCSC ID
 ```{r}
 dat_ucsc<-read.csv(system.file("extdata", "convertID_ucsc_data.csv", package = "TransAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = ",")
 dat_ucsc
 ```
 
-(3) load .bed of refseq ID
+- load .bed of refseq ID
 ```{r}
 dat_b<-read.table(system.file("extdata", "convertID_refseq_data2.bed", package = "TransAT"),
               stringsAsFactors = FALSE, encoding = "UTF-8", row.names = NULL, sep = "\t", header=T)
@@ -31,12 +34,12 @@ dat_b
 
 **Excute in convert_transcriptID()**
 
-(1) convert transcript refseq ID
+- convert transcript refseq ID
 ```{r}
 new_dat<-convert_transcriptID(dat, db, dat_filter = "refseq_mrna")
 ```
 
-(2) convert transcript ucsc ID
+- convert transcript ucsc ID
 ```{r}
 new_dat_ucsc<-convert_transcriptID(dat_ucsc, db, dat_filter = "ucsc")
 ```
@@ -46,6 +49,8 @@ new_dat_ucsc<-convert_transcriptID(dat_ucsc, db, dat_filter = "ucsc")
 data(convertID_result, package = "TransAT")
 convertID_result
 ```
+
+## Usage of pop_freq()
 
 **Load the data for getting population allele frequency**
 ```{r}
@@ -67,4 +72,4 @@ data(pop_result, package = "TransAT")
 pop_result
 ```
 
-This is the [PDF] (https://github.com/ShihChingYu/TransAT/blob/master/data-raw/plots.pdf) depicting MAF of each global population with barplots.
+This is the [PDF](https://github.com/ShihChingYu/TransAT/blob/master/data-raw/plots.pdf) depicting MAF of each global population with barplots.
