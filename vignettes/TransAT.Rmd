@@ -9,7 +9,7 @@ vignette: >
 
 Install the package
 ```{r setup}
-##devtools::install_github("ShihChingYu/TransAT")
+##devtools::install_github("ShihChingYu/TransAT", force=T)
 library(TransAT)
 ```
 

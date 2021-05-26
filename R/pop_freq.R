@@ -66,7 +66,8 @@ pop_freq<-function(dat_ori, pop="db_gnomAD_exome_freq"){
       dat2<-data.frame(dat)
       ggpl<-ggplot2::ggplot(dat2, aes(x=rownames(dat2), y=dat, color=rownames(dat2))) +
         ggplot2::geom_bar(stat = "identity", fill="white") +xlab('Population') +
-        ylab('Frequency') + coord_flip() + theme(legend.position = "none")
+        ylab('Frequency') + coord_flip() + theme(legend.position = "none") +
+        ggtitle(paste0("Genomic position: \n ", pop_result[i,1], ":", pop_result[i,2], pop_result[i,4], ">", pop_result[i,5]))
       print(ggpl)}
     grDevices::dev.off()
   }
