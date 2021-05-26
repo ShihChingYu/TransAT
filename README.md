@@ -66,3 +66,5 @@ pop_dat<-pop_freq(anno_freq_data, pop="db_gnomAD_exome_freq")
 data(pop_result, package = "TransAT")
 pop_result
 ```
+
+This is the [PDF] (https://github.com/ShihChingYu/TransAT/blob/master/data-raw/plots.pdf) depicting MAF of each global population with barplots.
